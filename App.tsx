@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, ScrollView } from 'react-native';
 
 const NameCard = ({ name, model, manufacturer, address }) => (
   <View style={styles.card}>
@@ -26,14 +26,14 @@ const SearchScreen = () => {
   
 
   const filteredCards = dummyData.filter(card => 
-    card.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())
+    card.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
   setNameCards(filteredCards);
 };
   
 
   return (
-    <View style ={styles.container}>
+    <ScrollView contentContainerStyle ={styles.container}>
       <View style = {styles.banner}>
         <Text style={styles.bannerText}>
           {"Ayush Kumar Verma"}
@@ -53,13 +53,13 @@ const SearchScreen = () => {
       {nameCards.map((card, index) => (
         <NameCard key={index} {...card} />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
   },
   input: {
